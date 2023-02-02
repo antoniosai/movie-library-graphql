@@ -5,27 +5,29 @@ import {
   Root
 } from 'type-graphql';
 import { ActorEntity } from './actor.entity';
+import { ActorService } from './actor.service';
 import { ActorDTO } from './dto/actor.dto';
 
 @Resolver((_of) => ActorEntity)
 export class ActorResolver {
 
+  actorService: ActorService;
+
+  constructor() {
+    this.actorService = new ActorService();
+  }
+
   @Query(() => [ActorEntity])
   async getAllActors(): Promise<ActorDTO[]> {
-    // TODO: Create a Service
-    const data: ActorDTO[] = [
-      {
-        idActor: 1,
-        name: "Adam",
-        gender: "male",
-        birthDate: new Date(),
-        birthPlace: "West Java",
-        nationality: "Indonesia"
-      }
-    ];
+    try {
 
-    console.log("Data => ", data);
-    return data;
+      // TODO: Create a Service
+      const data: ActorDTO[] = [];
+      return data;
+    } catch (err) {
+      console.error("Error => ", err);
+      throw new err;
+    }
   }
 
   @FieldResolver((_type) => ActorEntity)
