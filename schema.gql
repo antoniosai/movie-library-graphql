@@ -38,16 +38,36 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+"""The Categories model"""
+type MovieEntity {
+  author: AuthorEntity!
+  genre: String!
+  idAuthor: Float!
+  idMovie: ID!
+  name: String!
+  year: Float!
+}
+
+input MovieInput {
+  idAuthor: Float!
+  name: String!
+  year: Float!
+}
+
 type Mutation {
   insertNewActor(newActorData: ActorInput!): ActorEntity!
   insertNewAuthor(newAuthorData: AuthorInput!): AuthorEntity!
+  insertNewMovie(newMovieData: MovieInput!): MovieEntity!
   updateActor(idActor: Float!, updateDate: ActorInput!): ActorEntity!
   updateAuthor(idAuthor: Float!, updateDate: AuthorInput!): AuthorEntity!
+  updateMovie(idMovie: Float!, updateDate: MovieInput!): MovieEntity!
 }
 
 type Query {
   findActorById(id: Float!): ActorEntity!
   findAuthorById(id: Float!): AuthorEntity!
+  findMovieById(id: Float!): MovieEntity!
   getAllActors: [ActorEntity!]!
   getAllAuthors: [AuthorEntity!]!
+  getAllMovies: [MovieEntity!]!
 }
