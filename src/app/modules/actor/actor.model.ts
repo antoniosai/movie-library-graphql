@@ -25,7 +25,6 @@ ActorModel.init({
   gender: {
     type: DataTypes.ENUM('male', 'female'),
     allowNull: false,
-    unique: true
   },
   nationality: {
     type: DataTypes.STRING
