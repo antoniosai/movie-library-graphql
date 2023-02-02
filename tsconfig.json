@@ -26,18 +26,7 @@
     "strict": false,
     "experimentalDecorators": true,
     "outDir": "dist",
-    "rootDir": "src/app",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "src/app/types/*"
-      ]
-    }
-  },
-  "include": [
-    "src/app/**/*",
-    "src/app/**/*.ts",
-    "src/app/**/*.tsx"
-  ]
+    "rootDir": "src",
+    "baseUrl": "./"
+  }
 }
