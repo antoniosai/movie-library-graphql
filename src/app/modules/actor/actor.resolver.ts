@@ -12,16 +12,17 @@ import { ActorInput } from './inputs/actor.input';
 @Resolver((_of) => ActorEntity)
 export class ActorResolver {
 
+  // Initialize Service(s)
   actorService: ActorService;
 
   constructor() {
+    // Initialize Service
     this.actorService = new ActorService();
   }
 
   @Query(() => [ActorEntity])
   async getAllActors(): Promise<ActorDTO[]> {
     try {
-      // TODO: Create a Service
       const data: ActorDTO[] = await this.actorService.getAllActors();
       return data;
     } catch (err) {
@@ -33,7 +34,6 @@ export class ActorResolver {
   @Query((_returns) => ActorEntity, { nullable: false })
   async findActorById(@Arg('id') id: number) {
     try {
-      // TODO: Create a Service
       const data: ActorDTO | null = await this.actorService.getActorById(id);
 
       if(!data) {
@@ -65,6 +65,7 @@ export class ActorResolver {
   ): Promise<ActorDTO | undefined> {
     const data: [affectedCount: number] = await this.actorService.updateActor(idActor, user);
 
+    // Return an Actor if it's found
     if(data) {
       return this.findActorById(idActor);
     }
