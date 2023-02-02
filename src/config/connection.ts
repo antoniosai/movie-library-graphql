@@ -1,6 +1,6 @@
 import { Dialect, Sequelize } from 'sequelize';
 
-// TODO: Create an Enviromnet Variables for Database Credentials
+// TODO: Create an Enviromnet Variables for Database Credential
 const dbDriver = "postgres" as Dialect
 const dbHost = "127.0.0.1"
 const dbPort = 5439;
