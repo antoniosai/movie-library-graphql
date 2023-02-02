@@ -28,6 +28,7 @@ scalar DateTime
 
 type Mutation {
   insertNewActor(newUserData: ActorInput!): ActorEntity!
+  updateActor(idActor: Float!, updateDate: ActorInput!): ActorEntity!
 }
 
 type Query {

@@ -21,4 +21,12 @@ export class ActorService {
     return response;
   }
 
+  async updateActor(idActor: number, actorInput: ActorInput): Promise<[affectedCount: number]> {
+    const response: [affectedCount: number] = await ActorModel.update(actorInput, {
+      where: { idActor: idActor }
+    });
+
+    return response;
+  }
+
 }

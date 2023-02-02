@@ -58,4 +58,19 @@ export class ActorResolver {
     return data;
   }
 
+  @Mutation(() => ActorEntity)
+  async updateActor(
+    @Arg('idActor') idActor: number,
+    @Arg('updateDate') user: ActorInput
+  ): Promise<ActorDTO | undefined> {
+    const data: [affectedCount: number] = await this.actorService.updateActor(idActor, user);
+
+    if(data) {
+      return this.findActorById(idActor);
+    }
+
+    return;
+
+  }
+
 }
