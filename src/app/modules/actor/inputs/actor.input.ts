@@ -21,5 +21,6 @@ export class ActorInput implements Omit<ActorDTO, 'idActor'> {
 
   @Field()
   @MaxLength(30)
+  @Field({ nullable: false })
   name: string;
 }
