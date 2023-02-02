@@ -6,6 +6,7 @@ import { buildSchema } from 'type-graphql';
 import ActorModel from './modules/actor/actor.model';
 import { ActorResolver } from './modules/actor/actor.resolver';
 import AuthorModel from './modules/author/author.model';
+import { AuthorResolver } from './modules/author/author.resolver';
 
 const dbInit = () => Promise.all([
   ActorModel.sync({ alter: false }),
@@ -19,6 +20,7 @@ const main = async () => {
   const schema = await buildSchema({
     resolvers: [
       ActorResolver,
+      AuthorResolver,
     ],
     emitSchemaFile: true,
     validate: false,

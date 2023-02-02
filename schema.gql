@@ -21,6 +21,18 @@ input ActorInput {
   nationality: String!
 }
 
+"""The Categories model"""
+type AuthorEntity {
+  description: String!
+  idAuthor: ID!
+  name: String!
+}
+
+input AuthorInput {
+  description: String!
+  name: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -28,10 +40,14 @@ scalar DateTime
 
 type Mutation {
   insertNewActor(newUserData: ActorInput!): ActorEntity!
+  insertNewAuthor(newUserData: AuthorInput!): AuthorEntity!
   updateActor(idActor: Float!, updateDate: ActorInput!): ActorEntity!
+  updateAuthor(idAuthor: Float!, updateDate: AuthorInput!): AuthorEntity!
 }
 
 type Query {
   findActorById(id: Float!): ActorEntity!
+  findAuthorById(id: Float!): AuthorEntity!
   getAllActors: [ActorEntity!]!
+  getAllAuthors: [AuthorEntity!]!
 }
