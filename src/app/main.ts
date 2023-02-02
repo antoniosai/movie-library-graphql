@@ -3,7 +3,18 @@ import { ApolloServer } from 'apollo-server-express';
 import Express from 'express';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
+import ActorModel from './modules/actor/actor.model';
 import { ActorResolver } from './modules/actor/actor.resolver';
+
+const isDev = process.env.NODE_ENV === 'development'
+const isTest = process.env.NODE_ENV !== 'test'
+
+const dbInit = () => Promise.all([
+  ActorModel.sync({ alter: isDev || isTest })
+])
+
+dbInit();
+
 
 const main = async () => {
   const schema = await buildSchema({
