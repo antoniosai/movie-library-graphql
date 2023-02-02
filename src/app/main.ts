@@ -5,9 +5,11 @@ import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import ActorModel from './modules/actor/actor.model';
 import { ActorResolver } from './modules/actor/actor.resolver';
+import AuthorModel from './modules/author/author.model';
 
 const dbInit = () => Promise.all([
-  ActorModel.sync({ alter: false })
+  ActorModel.sync({ alter: false }),
+  AuthorModel.sync({ alter: true })
 ])
 
 dbInit();
