@@ -39,8 +39,8 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 scalar DateTime
 
 type Mutation {
-  insertNewActor(newUserData: ActorInput!): ActorEntity!
-  insertNewAuthor(newUserData: AuthorInput!): AuthorEntity!
+  insertNewActor(newActorData: ActorInput!): ActorEntity!
+  insertNewAuthor(newAuthorData: AuthorInput!): AuthorEntity!
   updateActor(idActor: Float!, updateDate: ActorInput!): ActorEntity!
   updateAuthor(idAuthor: Float!, updateDate: AuthorInput!): AuthorEntity!
 }

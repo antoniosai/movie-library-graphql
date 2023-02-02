@@ -51,7 +51,7 @@ export class ActorResolver {
 
   @Mutation(() => ActorEntity)
   async insertNewActor(
-    @Arg('newUserData') user: ActorInput
+    @Arg('newActorData') user: ActorInput
   ): Promise<ActorDTO> {
     const data: ActorDTO = await this.actorService.insertNewActor(user);
 

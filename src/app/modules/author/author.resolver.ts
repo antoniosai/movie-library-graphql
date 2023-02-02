@@ -51,7 +51,7 @@ export class AuthorResolver {
 
   @Mutation(() => AuthorEntity)
   async insertNewAuthor(
-    @Arg('newUserData') user: AuthorInput
+    @Arg('newAuthorData') user: AuthorInput
   ): Promise<AuthorDTO> {
     const data: AuthorDTO = await this.authorService.insertNewAuthor(user);
 
