@@ -7,10 +7,13 @@ import ActorModel from './modules/actor/actor.model';
 import { ActorResolver } from './modules/actor/actor.resolver';
 import AuthorModel from './modules/author/author.model';
 import { AuthorResolver } from './modules/author/author.resolver';
+import MovieModel from './modules/movie/movie.model';
+import { MovieResolver } from './modules/movie/movie.resolver';
 
 const dbInit = () => Promise.all([
-  ActorModel.sync({ alter: false }),
-  AuthorModel.sync({ alter: true })
+  AuthorModel.sync({ alter: true }),
+  MovieModel.sync({ alter: true }),
+  ActorModel.sync({ alter: true }),
 ])
 
 dbInit();
@@ -21,6 +24,7 @@ const main = async () => {
     resolvers: [
       ActorResolver,
       AuthorResolver,
+      MovieResolver,
     ],
     emitSchemaFile: true,
     validate: false,
