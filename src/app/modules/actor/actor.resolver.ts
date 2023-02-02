@@ -22,7 +22,7 @@ export class ActorResolver {
     try {
 
       // TODO: Create a Service
-      const data: ActorDTO[] = [];
+      const data: ActorDTO[] = await this.actorService.getAllActors();
       return data;
     } catch (err) {
       console.error("Error => ", err);
