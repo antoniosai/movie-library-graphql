@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { Field, ID, ObjectType } from "type-graphql";
-import sequelizeConnection from "../../../config/connection";
+import sequelizeConnection from "../../config/connection";
 import AuthorModel from "../author/author.model";
 import { MovieDTO } from "./dto/movie.dto";
 import { MovieInput } from "./inputs/movie.input";

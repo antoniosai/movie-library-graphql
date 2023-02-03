@@ -4,37 +4,14 @@ import Express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
-import ActorModel from './modules/actor/actor.model';
+import { dbInit } from './config/db/init';
 import { ActorResolver } from './modules/actor/actor.resolver';
-import ActorMovieModel from './modules/actormovie/actormovie.model';
-import AuthorModel from './modules/author/author.model';
 import { AuthorResolver } from './modules/author/author.resolver';
-import MovieModel from './modules/movie/movie.model';
 import { MovieResolver } from './modules/movie/movie.resolver';
 
-const dbInit = () => Promise.all([
-  AuthorModel.sync().then(() => {
-    AuthorModel.hasMany(MovieModel, {
-      // Associate with Relations
-      foreignKey: 'idAuthor',
-      as: 'movies'
-    });
-  }),
-  MovieModel.sync().then(() => {
-    // Associate with Relations
-    MovieModel.belongsTo(AuthorModel, {
-      foreignKey: 'idAuthor',
-      targetKey: 'idAuthor',
-      as: 'author'
-    });
-  }),
-  ActorModel.sync().then(() => {
-  }),
-  ActorMovieModel.sync(),
-])
+// Initialize Database
 
 dbInit();
-
 const main = async () => {
 
   // Initialization of Schemas
