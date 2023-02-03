@@ -1,3 +1,4 @@
+import MovieModel from "../movie/movie.model";
 import AuthorModel from "./author.model";
 import { AuthorDTO } from "./dto/author.dto";
 import { AuthorInput } from "./inputs/author.input";
@@ -6,7 +7,13 @@ export class AuthorService {
 
   async getAllAuthors(): Promise<AuthorDTO[]> {
     console.log("Fetching Data from User");
-    return await AuthorModel.findAll();
+    return await AuthorModel.findAll({
+      where: {},
+      include: {
+        model: MovieModel,
+        as: "movies"
+      }
+    });
   }
 
   async getAuthorById(idAuthor: number): Promise<AuthorDTO | null> {

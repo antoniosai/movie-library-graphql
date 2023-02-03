@@ -4,12 +4,12 @@ import {
   Query,
   Resolver
 } from 'type-graphql';
-import { AuthorEntity } from './author.entity';
+import AuthorModel from './author.model';
 import { AuthorService } from './author.service';
 import { AuthorDTO } from './dto/author.dto';
 import { AuthorInput } from './inputs/author.input';
 
-@Resolver((_of) => AuthorEntity)
+@Resolver((_of) => AuthorModel)
 export class AuthorResolver {
 
   // Initialize Service(s)
@@ -20,7 +20,7 @@ export class AuthorResolver {
     this.authorService = new AuthorService();
   }
 
-  @Query(() => [AuthorEntity])
+  @Query(() => [AuthorModel])
   async getAllAuthors(): Promise<AuthorDTO[]> {
     try {
       const data: AuthorDTO[] = await this.authorService.getAllAuthors();
@@ -31,7 +31,7 @@ export class AuthorResolver {
     }
   }
 
-  @Query((_returns) => AuthorEntity, { nullable: false })
+  @Query((_returns) => AuthorModel, { nullable: false })
   async findAuthorById(@Arg('id') id: number) {
     try {
       const data: AuthorDTO | null = await this.authorService.getAuthorById(id);
@@ -49,7 +49,7 @@ export class AuthorResolver {
     }
   }
 
-  @Mutation(() => AuthorEntity)
+  @Mutation(() => AuthorModel)
   async insertNewAuthor(
     @Arg('newAuthorData') user: AuthorInput
   ): Promise<AuthorDTO> {
@@ -58,7 +58,7 @@ export class AuthorResolver {
     return data;
   }
 
-  @Mutation(() => AuthorEntity)
+  @Mutation(() => AuthorModel)
   async updateAuthor(
     @Arg('idAuthor') idAuthor: number,
     @Arg('updateDate') user: AuthorInput

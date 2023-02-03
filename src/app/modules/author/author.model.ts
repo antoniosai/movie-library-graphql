@@ -1,12 +1,25 @@
 import { DataTypes, Model } from "sequelize";
+import { Field, ID, ObjectType } from "type-graphql";
 import sequelizeConnection from "../../../config/connection";
+import { MovieDTO } from "../movie/dto/movie.dto";
+import MovieModel from "../movie/movie.model";
 import { AuthorDTO } from "./dto/author.dto";
 import { AuthorInput } from "./inputs/author.input";
 
+@ObjectType({ description: 'The Categories model' })
 class AuthorModel extends Model<AuthorDTO, AuthorInput> implements AuthorDTO {
+
+  @Field(() => ID)
   public idAuthor!: number;
+
+  @Field()
   public name!: string;
+
+  @Field()
   public description!: string;
+
+  @Field(() => [MovieModel])
+  public movies?: MovieModel[] | MovieDTO[];
 }
 
 AuthorModel.init({
@@ -25,7 +38,9 @@ AuthorModel.init({
 }, {
   timestamps: false,
   sequelize: sequelizeConnection,
-  paranoid: true
-})
+  modelName: 'authors'
+});
+
+
 
 export default AuthorModel;
