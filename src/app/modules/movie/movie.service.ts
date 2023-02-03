@@ -1,3 +1,4 @@
+import AuthorModel from "../author/author.model";
 import { MovieDTO } from "./dto/movie.dto";
 import { MovieInput } from "./inputs/movie.input";
 import MovieModel from "./movie.model";
@@ -6,7 +7,15 @@ export class MovieService {
 
   async getAllMovies(): Promise<MovieDTO[]> {
     console.log("Fetching Data from User");
-    return await MovieModel.findAll();
+    return await MovieModel.findAll({
+      where: {},
+      include: [
+        {
+          model: AuthorModel,
+          as: "author"
+        }
+      ]
+    });
   }
 
   async getMovieById(idMovie: number): Promise<MovieDTO | null> {

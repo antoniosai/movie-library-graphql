@@ -6,10 +6,10 @@ import {
 } from 'type-graphql';
 import { MovieDTO } from './dto/movie.dto';
 import { MovieInput } from './inputs/movie.input';
-import { MovieEntity } from './movie.entity';
+import MovieModel from './movie.model';
 import { MovieService } from './movie.service';
 
-@Resolver((_of) => MovieEntity)
+@Resolver((_of) => MovieModel)
 export class MovieResolver {
 
   // Initialize Service(s)
@@ -20,7 +20,7 @@ export class MovieResolver {
     this.movieService = new MovieService();
   }
 
-  @Query(() => [MovieEntity])
+  @Query(() => [MovieModel])
   async getAllMovies(): Promise<MovieDTO[]> {
     try {
       const data: MovieDTO[] = await this.movieService.getAllMovies();
@@ -31,7 +31,7 @@ export class MovieResolver {
     }
   }
 
-  @Query((_returns) => MovieEntity, { nullable: false })
+  @Query((_returns) => MovieModel, { nullable: false })
   async findMovieById(@Arg('id') id: number) {
     try {
       const data: MovieDTO | null = await this.movieService.getMovieById(id);
@@ -49,7 +49,7 @@ export class MovieResolver {
     }
   }
 
-  @Mutation(() => MovieEntity)
+  @Mutation(() => MovieModel)
   async insertNewMovie(
     @Arg('newMovieData') user: MovieInput
   ): Promise<MovieDTO> {
@@ -58,7 +58,7 @@ export class MovieResolver {
     return data;
   }
 
-  @Mutation(() => MovieEntity)
+  @Mutation(() => MovieModel)
   async updateMovie(
     @Arg('idMovie') idMovie: number,
     @Arg('updateDate') user: MovieInput

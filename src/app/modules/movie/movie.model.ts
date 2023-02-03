@@ -1,19 +1,33 @@
 import { DataTypes, Model } from "sequelize";
+import { Field, ID, ObjectType } from "type-graphql";
 import sequelizeConnection from "../../../config/connection";
 import AuthorModel from "../author/author.model";
-import { AuthorDTO } from "../author/dto/author.dto";
 import { MovieDTO } from "./dto/movie.dto";
 import { MovieInput } from "./inputs/movie.input";
 
+@ObjectType({ description: 'The Movie model' })
 class MovieModel extends Model<MovieDTO, MovieInput> implements MovieDTO {
-  public idMovie!: number;
+  
+  @Field(() => ID)
+  public idMovie: number;
+
+  @Field()
   public idAuthor: number;
+
+  @Field()
+  public name: string;
+  
+  @Field()
   public genre: "mystery" | "thriller" | "comedy" | "sci-fi";
+
+  @Field()
   public year: number;
-  author?: AuthorDTO | undefined;
-  public name!: string;
-  public description!: string;
+  
+  @Field(() => AuthorModel)
+  public author: AuthorModel;
+
 }
+
 
 MovieModel.init({
   idMovie: {
@@ -23,7 +37,12 @@ MovieModel.init({
   },
   idAuthor: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    primaryKey: false,
+    references: {
+      model: AuthorModel,
+      key: 'idAuthor'
+    }
   },
   name: {
     type: DataTypes.STRING,
@@ -40,12 +59,7 @@ MovieModel.init({
 }, {
   timestamps: false,
   sequelize: sequelizeConnection,
-  paranoid: true
-})
-
-MovieModel.belongsTo(AuthorModel, {
-  foreignKey: 'idAuthor',
-  as: 'author'
+  modelName: "movie"
 });
 
 export default MovieModel;
