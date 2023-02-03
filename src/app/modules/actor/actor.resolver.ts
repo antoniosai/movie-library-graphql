@@ -4,12 +4,12 @@ import {
   Query,
   Resolver
 } from 'type-graphql';
-import { ActorEntity } from './actor.entity';
+import ActorModel from './actor.model';
 import { ActorService } from './actor.service';
 import { ActorDTO } from './dto/actor.dto';
 import { ActorInput } from './inputs/actor.input';
 
-@Resolver((_of) => ActorEntity)
+@Resolver((_of) => ActorModel)
 export class ActorResolver {
 
   // Initialize Service(s)
@@ -20,7 +20,7 @@ export class ActorResolver {
     this.actorService = new ActorService();
   }
 
-  @Query(() => [ActorEntity])
+  @Query(() => [ActorModel])
   async getAllActors(): Promise<ActorDTO[]> {
     try {
       const data: ActorDTO[] = await this.actorService.getAllActors();
@@ -31,7 +31,7 @@ export class ActorResolver {
     }
   }
 
-  @Query((_returns) => ActorEntity, { nullable: false })
+  @Query((_returns) => ActorModel, { nullable: false })
   async findActorById(@Arg('id') id: number) {
     try {
       const data: ActorDTO | null = await this.actorService.getActorById(id);
@@ -49,7 +49,7 @@ export class ActorResolver {
     }
   }
 
-  @Mutation(() => ActorEntity)
+  @Mutation(() => ActorModel)
   async insertNewActor(
     @Arg('newActorData') user: ActorInput
   ): Promise<ActorDTO> {
@@ -58,7 +58,7 @@ export class ActorResolver {
     return data;
   }
 
-  @Mutation(() => ActorEntity)
+  @Mutation(() => ActorModel)
   async updateActor(
     @Arg('idActor') idActor: number,
     @Arg('updateDate') user: ActorInput
