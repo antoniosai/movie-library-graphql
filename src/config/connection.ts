@@ -8,8 +8,6 @@ const dbName = "db_movie" as string
 const dbUser = "myusername" as string
 const dbPassword = "mypassword"
 
-console.log("ENV => ", process.env);
-
 const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,
   port: dbPort,
