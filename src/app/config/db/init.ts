@@ -20,6 +20,10 @@ const dbInit = () => Promise.all([
     });
   }),
   ActorModel.sync().then(() => {
+    // Many-to-Many Relationships
+    ActorModel.belongsToMany(MovieModel, {
+      through: ActorMovieModel,
+    });
   }),
   ActorMovieModel.sync(),
 ]);
