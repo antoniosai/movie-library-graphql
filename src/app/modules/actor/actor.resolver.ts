@@ -74,4 +74,13 @@ export class ActorResolver {
 
   }
 
+  @Mutation(() => ActorModel)
+  async deleteActor(
+    @Arg('idActor') idActor: number
+  ): Promise<number> {
+    const data: number = await this.actorService.deleteActor(idActor);
+
+    return data;
+  }
+
 }

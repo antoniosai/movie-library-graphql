@@ -29,4 +29,12 @@ export class ActorService {
     return response;
   }
 
+  async deleteActor(idActor: number): Promise<number> {
+    return await ActorModel.destroy({
+      where: {
+        idActor: idActor
+      }
+    });
+  }
+
 }
