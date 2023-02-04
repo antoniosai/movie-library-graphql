@@ -1,12 +1,14 @@
+import config from "./config";
+
 import { Dialect, Sequelize } from 'sequelize';
 
 // TODO: Create an Enviromnet Variables for Database Credential
-const dbDriver = "postgres" as Dialect
-const dbHost = "127.0.0.1"
-const dbPort = 5439;
-const dbName = "db_movie" as string
-const dbUser = "myusername" as string
-const dbPassword = "mypassword"
+const dbDriver = config.DB_DRIVER as Dialect
+const dbHost = config.DB_HOST
+const dbPort = Number(config.DB_PORT);
+const dbName = config.DB_NAME as string;
+const dbUser = config.DB_USERNAME as string;
+const dbPassword = config.DB_PASSWORD;
 
 const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,

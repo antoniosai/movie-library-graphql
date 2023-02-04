@@ -21,6 +21,10 @@
       "es2016",
       "esnext.asynciterable"
     ],
+    "typeRoots": [
+      "./src/app/core/global.d.ts",
+      "./node_modules/@types"
+    ],
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "strict": false,

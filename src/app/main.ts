@@ -11,8 +11,8 @@ import { AuthorResolver } from './modules/author/author.resolver';
 import { MovieResolver } from './modules/movie/movie.resolver';
 
 // Initialize Database
-
 dbInit();
+
 const main = async () => {
 
   // Initialization of Schemas
