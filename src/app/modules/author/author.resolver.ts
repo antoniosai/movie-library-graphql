@@ -74,4 +74,14 @@ export class AuthorResolver {
 
   }
 
+  @Mutation(() => AuthorModel)
+  async deleteActor(
+    @Arg('idAuthor') idAuthor: number
+  ): Promise<number> {
+    const data: number = await this.authorService.deleteActor(idAuthor);
+
+    return data;
+  }
+
+
 }

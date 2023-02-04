@@ -36,4 +36,12 @@ export class AuthorService {
     return response;
   }
 
+  async deleteActor(idAuthor: number): Promise<number> {
+    return await AuthorModel.destroy({
+      where: {
+        idAuthor: idAuthor
+      }
+    });
+  }
+
 }
