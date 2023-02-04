@@ -6,6 +6,7 @@ import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import { dbInit } from './config/db/init';
 import { ActorResolver } from './modules/actor/actor.resolver';
+import { ActorMovieResolver } from './modules/actormovie/actormovie.resolver';
 import { AuthorResolver } from './modules/author/author.resolver';
 import { MovieResolver } from './modules/movie/movie.resolver';
 
@@ -20,6 +21,7 @@ const main = async () => {
       ActorResolver,
       AuthorResolver,
       MovieResolver,
+      ActorMovieResolver,
     ],
     emitSchemaFile: true,
     validate: false,
