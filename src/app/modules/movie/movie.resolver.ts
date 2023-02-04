@@ -74,7 +74,7 @@ export class MovieResolver {
 
   }
 
-  @Mutation(() => MovieModel)
+  @Mutation(() => Number)
   async deleteMovie(
     @Arg('idMovie') idMovie: number
   ): Promise<number> {

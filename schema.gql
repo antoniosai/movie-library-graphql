@@ -74,7 +74,8 @@ type MovieModel {
 type Mutation {
   attachActorMovie(actorMovieData: ActorMovieInput!): ActorMovieModel!
   deleteActor(idAuthor: Float!): AuthorModel!
-  deleteMovie(idMovie: Float!): MovieModel!
+  deleteMovie(idMovie: Float!): Float!
+  detachActorMovie(actorMovieData: ActorMovieInput!): Float!
   insertNewActor(newActorData: ActorInput!): ActorModel!
   insertNewAuthor(newAuthorData: AuthorInput!): AuthorModel!
   insertNewMovie(newMovieData: MovieInput!): MovieModel!
