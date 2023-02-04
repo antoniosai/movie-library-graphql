@@ -6,41 +6,39 @@ import {
 import ActorMovieModel from './actormovie.model';
 import { ActorMovieService } from './actormovie.service';
 import { ActorMovieDTO } from './dto/actormovie.dto';
+import { ActorMovieInput } from './inputs/actormovie.input';
 
 @Resolver((_of) => ActorMovieModel)
 export class ActorMovieResolver {
 
   // Initialize Service(s)
-  actormovieService: ActorMovieService;
+  actorMovieService: ActorMovieService;
 
   constructor() {
     // Initialize Service
-    this.actormovieService = new ActorMovieService();
+    this.actorMovieService = new ActorMovieService();
   }
 
-  @Mutation(() => ActorMovieModel)
-  async detachActorMovie(
-    @Arg('idActor') idActor: number,
-    @Arg('idMovie') idMovie: number
-  ): Promise<number> {
-    const data: number = await this.actormovieService.detach(idActor, idMovie);
-
-    // Return an ActorMovie if it's found
-    return data;
-  }
 
   @Mutation(() => ActorMovieModel)
   async attachActorMovie(
-    @Arg('idActor') idActor: number,
-    @Arg('idMovie') idMovie: number
-  ): Promise<ActorMovieDTO | undefined> {
-    const data: ActorMovieDTO = await this.actormovieService.attach(idActor, idMovie);
+    @Arg('actorMovieData') actorMovieData: ActorMovieInput,
+    
+  ): Promise<ActorMovieDTO> {
+    const data: ActorMovieDTO = await this.actorMovieService.attach(actorMovieData);
 
-    // Return an ActorMovie if it's found
-    if(data) {
-      return this.actormovieService.attach(idActor, idMovie);
-    }
-    return;
+    return data;
   }
+
+  @Mutation(() => Number)
+  async detachActorMovie(
+    @Arg('actorMovieData') actorMovieData: ActorMovieInput,
+    
+  ): Promise<number> {
+    const data: number = await this.actorMovieService.detach(actorMovieData);
+
+    return data;
+  }
+
 
 }

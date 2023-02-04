@@ -18,11 +18,11 @@ class ActorMovieModel extends Model<ActorMovieDTO, ActorMovieInput> implements A
   @Field()
   public idMovie: number;
 
-  // @Field()
-  // public movie?: MovieModel;
+  @Field(() => MovieModel)
+  public movie?: MovieModel;
 
-  // @Field()
-  // public author?: AuthorModel;
+  @Field(() => ActorModel)
+  public actor?: ActorModel;
 }
 
 ActorMovieModel.init({

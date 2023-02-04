@@ -1,3 +1,5 @@
+import ActorMovieModel from "../actormovie/actormovie.model";
+import MovieModel from "../movie/movie.model";
 import ActorModel from "./actor.model";
 import { ActorDTO } from "./dto/actor.dto";
 import { ActorInput } from "./inputs/actor.input";
@@ -5,8 +7,25 @@ import { ActorInput } from "./inputs/actor.input";
 export class ActorService {
 
   async getAllActors(): Promise<ActorDTO[]> {
-    console.log("Fetching Data from User");
-    return await ActorModel.findAll();
+    return await ActorModel.findAll({
+      where: {},
+      include: [
+        {
+          model: ActorMovieModel,
+          as: "actorMovie",
+          include: [
+            {
+              model: MovieModel,
+              as: "movie",
+            },
+            {
+              model: ActorModel,
+              as: "actor",
+            },
+          ]
+        }
+      ],
+    });
   }
 
   async getActorById(idActor: number): Promise<ActorDTO | null> {

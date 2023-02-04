@@ -3,10 +3,10 @@ import { ActorMovieDTO } from "../dto/actormovie.dto";
 
 @InputType()
 export class ActorMovieInput implements Pick<ActorMovieDTO, 'idActor' | 'idMovie'> {
-  @Field()
+  @Field({ nullable: false })
   idActor: number;
 
-  @Field()
+  @Field({ nullable: false })
   idMovie: number;
 
 }

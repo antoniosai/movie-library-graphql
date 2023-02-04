@@ -3,29 +3,47 @@ import ActorMovieModel from "../../modules/actormovie/actormovie.model";
 import AuthorModel from "../../modules/author/author.model";
 import MovieModel from "../../modules/movie/movie.model";
 
-const dbInit = () => Promise.all([
-  AuthorModel.sync().then(() => {
+const dbInit = () => {
+  Promise.all([
+    AuthorModel.sync(),
+    MovieModel.sync(),
+    ActorModel.sync(),
+    ActorMovieModel.sync(),
+  ]).then(() => {
+
+    // Associate with Relations
     AuthorModel.hasMany(MovieModel, {
-      // Associate with Relations
       foreignKey: 'idAuthor',
-      as: 'movies'
+      as: 'movies',
     });
-  }),
-  MovieModel.sync().then(() => {
+    
     // Associate with Relations
     MovieModel.belongsTo(AuthorModel, {
       foreignKey: 'idAuthor',
       targetKey: 'idAuthor',
       as: 'author'
     });
-  }),
-  ActorModel.sync().then(() => {
-    // Many-to-Many Relationships
-    ActorModel.belongsToMany(MovieModel, {
-      through: ActorMovieModel,
+    
+    ActorModel.hasMany(ActorMovieModel, {
+      foreignKey: 'idActor',
+      as: 'actorMovie'
     });
-  }),
-  ActorMovieModel.sync(),
-]);
+
+    MovieModel.hasMany(ActorMovieModel, {
+      foreignKey: 'idMovie',
+      as: 'movieActor'
+    });
+
+    ActorMovieModel.belongsTo(ActorModel, {
+      foreignKey: 'idActor',
+      as: 'actor'
+    });
+
+    ActorMovieModel.belongsTo(MovieModel, {
+      foreignKey: 'idMovie',
+      as: 'movie'
+    });
+  });
+} 
 
 export { dbInit };

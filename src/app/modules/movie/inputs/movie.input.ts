@@ -9,6 +9,7 @@ export class MovieInput implements Omit<MovieDTO, 'idMovie'> {
   @MaxLength(30)
   name: string;
 
+  @Field()
   genre: "mystery" | "thriller" | "comedy" | "sci-fi";
 
   @Field()

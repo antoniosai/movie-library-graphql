@@ -13,12 +13,27 @@ input ActorInput {
 
 """The Actor model"""
 type ActorModel {
+  actorMovie: [ActorMovieModel!]!
   birthDate: DateTime!
   birthPlace: String!
   gender: String!
   idActor: ID!
   name: String!
   nationality: String!
+}
+
+input ActorMovieInput {
+  idActor: Float!
+  idMovie: Float!
+}
+
+"""The Relation Actor Movie Model"""
+type ActorMovieModel {
+  actor: ActorModel!
+  idActor: Float!
+  idActorMovie: ID!
+  idMovie: Float!
+  movie: MovieModel!
 }
 
 input AuthorInput {
@@ -40,6 +55,7 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 scalar DateTime
 
 input MovieInput {
+  genre: String!
   idAuthor: Float!
   name: String!
   year: Float!
@@ -56,6 +72,9 @@ type MovieModel {
 }
 
 type Mutation {
+  attachActorMovie(actorMovieData: ActorMovieInput!): ActorMovieModel!
+  deleteActor(idAuthor: Float!): AuthorModel!
+  deleteMovie(idMovie: Float!): MovieModel!
   insertNewActor(newActorData: ActorInput!): ActorModel!
   insertNewAuthor(newAuthorData: AuthorInput!): AuthorModel!
   insertNewMovie(newMovieData: MovieInput!): MovieModel!

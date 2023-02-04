@@ -1,3 +1,5 @@
+import ActorMovieModel from "../../actormovie/actormovie.model";
+
 export interface ActorDTO {
   idActor: number;
   name: string;
@@ -5,4 +7,5 @@ export interface ActorDTO {
   nationality: string;
   birthPlace: string;
   birthDate: Date; 
+  actorMovie?: ActorMovieModel[];
 }
