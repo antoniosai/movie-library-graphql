@@ -38,4 +38,12 @@ export class MovieService {
     return response;
   }
 
+  async deleteMovie(idMovie: number): Promise<number> {
+    return await MovieModel.destroy({
+      where: {
+        idMovie: idMovie
+      }
+    });
+  }
+
 }

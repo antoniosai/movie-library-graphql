@@ -74,4 +74,13 @@ export class MovieResolver {
 
   }
 
+  @Mutation(() => MovieModel)
+  async deleteMovie(
+    @Arg('idMovie') idMovie: number
+  ): Promise<number> {
+    const data: number = await this.movieService.deleteMovie(idMovie);
+
+    return data;
+  }
+
 }
