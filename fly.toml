@@ -1,19 +1,20 @@
-# fly.toml file generated for still-rain-19 on 2023-02-05T13:13:02+07:00
+# fly.toml file generated for summer-sun-281 on 2023-02-05T14:12:19+07:00
 
-app = "still-rain-19"
+app = "summer-sun-281"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
-  APP_PORT=8080
-  NODE_ENV=".env"
-  DB_DRIVER="postgres"
-  DB_HOST="db-movie.internal"
-  DB_PORT=5432
-  DB_NAME="db_movie"
-  DB_USERNAME="postgres"
-  DB_PASSWORD="iXQXN119Y8XUkjd"
+  APP_PORT = 8080
+  DB_DRIVER = "postgres"
+  DB_HOST = "db-movie.internal"
+  DB_NAME = "db_movie"
+  DB_PASSWORD = "iXQXN119Y8XUkjd"
+  DB_PORT = 5432
+  DB_USERNAME = "postgres"
+  NODE_ENV = ".env"
+
 [experimental]
   auto_rollback = true
 
