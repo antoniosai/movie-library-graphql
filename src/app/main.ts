@@ -43,7 +43,7 @@ const main = async () => {
     graphqlHTTP({
       schema: schema,
       graphiql: true,
-    })
+    }),
   );
 
   // Start a Server
@@ -53,7 +53,7 @@ const main = async () => {
   server.applyMiddleware({ app });
 
   // Listen a Port
-  app.listen({ port: 3333 }, () =>
+  app.listen({ port: 8080 }, () =>
     console.log(
       `🚀 Server ready and listening at ==> http://localhost:3333${server.graphqlPath}`
     )
