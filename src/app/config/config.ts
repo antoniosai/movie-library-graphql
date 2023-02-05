@@ -10,6 +10,7 @@ dotenv.config({ path: path.resolve(".env") });
 // as someone could skip these varibales or not setup a .env file at all
 
 interface ENV {
+  APP_PORT: number | undefined;
   DB_DRIVER: Dialect | undefined;
   DB_HOST: string | undefined;
   DB_PORT: number | undefined;
@@ -20,6 +21,7 @@ interface ENV {
 }
 
 interface Config {
+  APP_PORT: number;
   DB_DRIVER: Dialect;
   DB_HOST: string;
   DB_PORT: number;
@@ -33,6 +35,7 @@ interface Config {
 
 const getConfig = (): ENV => {
   return {
+    APP_PORT: process.env.APP_PORT ? Number(process.env.APP_PORT) : undefined,
     DB_DRIVER: process.env.DB_DRIVER ? process.env.DB_DRIVER as Dialect : undefined,
     DB_HOST: process.env.DB_HOST,
     DB_PORT: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,

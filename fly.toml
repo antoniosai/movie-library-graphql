@@ -6,6 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
+  APP_PORT=8080
   NODE_ENV=".env"
   DB_DRIVER="postgres"
   DB_HOST="db-movie.internal"

@@ -4,6 +4,7 @@ import Express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
+import config from "./config/config";
 import { dbInit } from './config/db/init';
 import { ActorResolver } from './modules/actor/actor.resolver';
 import { ActorMovieResolver } from './modules/actormovie/actormovie.resolver';
@@ -53,9 +54,9 @@ const main = async () => {
   server.applyMiddleware({ app });
 
   // Listen a Port
-  app.listen({ port: 8080 }, () =>
+  app.listen({ port: config.APP_PORT }, () =>
     console.log(
-      `🚀 Server ready and listening at ==> http://localhost:3333${server.graphqlPath}`
+      `🚀 Server ready and listening at ==> http://localhost:${config.APP_PORT}${server.graphqlPath}`
     )
   );
 };
