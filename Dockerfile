@@ -35,5 +35,5 @@ ENV NODE_ENV production
 ENV PATH /root/.volta/bin:$PATH
 
 RUN yarn add pg
-
+EXPOSE 8080
 CMD [ "yarn", "watch-node" ]
