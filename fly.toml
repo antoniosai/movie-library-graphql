@@ -8,11 +8,11 @@ processes = []
 [env]
   NODE_ENV=".env"
   DB_DRIVER="postgres"
-  DB_HOST="long-meadow-6071-db.internal"
+  DB_HOST="db-movie.internal"
   DB_PORT=5432
   DB_NAME="db_movie"
   DB_USERNAME="postgres"
-  DB_PASSWORD="SuHk74pH9IVlR4B"
+  DB_PASSWORD="iXQXN119Y8XUkjd"
 
 [experimental]
   auto_rollback = true

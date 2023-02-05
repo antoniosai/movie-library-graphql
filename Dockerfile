@@ -34,4 +34,6 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV PATH /root/.volta/bin:$PATH
 
+RUN yarn add pg
+
 CMD [ "yarn", "watch-node" ]
