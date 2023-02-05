@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { Field, ID, ObjectType } from "type-graphql";
 import sequelizeConnection from "../../config/connection";
-import ActorMovieModel from "../actormovie/actormovie.model";
 import { ActorDTO } from "./dto/actor.dto";
 import { ActorInput } from "./inputs/actor.input";
 
@@ -27,8 +26,8 @@ class ActorModel extends Model<ActorDTO, ActorInput> implements ActorDTO {
   public birthDate!: Date;
 
   // TODO: Please fix. Error caused by intermitten when first iniitalization a database
-  @Field(() => [ActorMovieModel])
-  public actorMovie?: ActorMovieModel[];
+  // @Field(() => [ActorMovieModel])
+  // public actorMovie?: ActorMovieModel[];
 }
 
 ActorModel.init({
