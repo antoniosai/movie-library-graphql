@@ -6,7 +6,6 @@ import MovieModel from "./movie.model";
 export class MovieService {
 
   async getAllMovies(): Promise<MovieDTO[]> {
-    console.log("Fetching Data from User");
     return await MovieModel.findAll({
       where: {},
       include: [

@@ -6,7 +6,6 @@ import { AuthorInput } from "./inputs/author.input";
 export class AuthorService {
 
   async getAllAuthors(): Promise<AuthorDTO[]> {
-    console.log("Fetching Data from User");
     return await AuthorModel.findAll({
       where: {},
       include: {
