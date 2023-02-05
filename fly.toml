@@ -1,6 +1,6 @@
-# fly.toml file generated for long-meadow-6071 on 2023-02-05T06:03:43+07:00
+# fly.toml file generated for still-rain-19 on 2023-02-05T13:13:02+07:00
 
-app = "long-meadow-6071"
+app = "still-rain-19"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -13,13 +13,12 @@ processes = []
   DB_NAME="db_movie"
   DB_USERNAME="postgres"
   DB_PASSWORD="iXQXN119Y8XUkjd"
-
 [experimental]
   auto_rollback = true
 
 [[services]]
   http_checks = []
-  internal_port = 3333
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []

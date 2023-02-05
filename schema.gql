@@ -13,7 +13,6 @@ input ActorInput {
 
 """The Actor model"""
 type ActorModel {
-  actorMovie: [ActorMovieModel!]!
   birthDate: DateTime!
   birthPlace: String!
   gender: String!
